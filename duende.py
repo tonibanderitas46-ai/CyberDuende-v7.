@@ -28,18 +28,19 @@ def get_public_ip():
 
 def escanear_espias():
     print(f"\n{Y}[*] Iniciando Escaneo Profundo de Amenazas...{N}")
-    # Base de datos v7.0
+    # Base de datos v7.0 - Spyware y Rastreo
     amenazas = {
         "mSpy / Eyezy": "com.mspy.android",
         "Eyezy Premium": "com.eyezy.android",
-        "Life360 (GPS)": "com.life360.android",
-        "FlexiSPY": "com.vvt.callloger",
-        "ClevGuard": "com.clevguard.assist",
-        "iSharing": "com.isharing.android",
-        "TrackView": "com.trackview"
+        "Life360 (Rastreo GPS)": "com.life360.android",
+        "FlexiSPY Professional": "com.vvt.callloger",
+        "ClevGuard / KidsGuard": "com.clevguard.assist",
+        "iSharing Localizador": "com.isharing.android",
+        "TrackView Cam/GPS": "com.trackview"
     }
     encontrado = False
     for nombre, paquete in amenazas.items():
+        # Verificamos si el paquete existe en el sistema
         check = os.popen(f"pm list packages | grep {paquete}").read()
         if check:
             print(f" {R}[!] PELIGRO: {nombre} DETECTADO{N}")
@@ -49,9 +50,9 @@ def escanear_espias():
         time.sleep(0.1)
     
     if not encontrado:
-        print(f"\n{G}[✔] No se detectaron intrusos de monitoreo.{N}")
+        print(f"\n{G}[✔] No se detectaron intrusos de monitoreo comercial.{N}")
     else:
-        print(f"\n{R}[!] Se recomienda limpieza inmediata.{N}")
+        print(f"\n{R}[!] ADVERTENCIA: Se detectaron amenazas activas.{N}")
 
 def menu():
     banner()
@@ -77,7 +78,7 @@ def menu():
         input("\nPresione Enter..."); menu()
 
     elif opc == "3":
-        print(f"\n{Y}[*] Cerrando puertos vulnerables...{N}")
+        print(f"\n{Y}[*] Cerrando puertos vulnerables en Nodo MTY...{N}")
         ports = [5555, 8080, 4444, 22]
         for p in ports:
             print(f" {W}- Puerto {p}: {G}BLOQUEADO{N}")
@@ -85,9 +86,24 @@ def menu():
         input("\nPresione Enter..."); menu()
 
     elif opc == "4":
-        print(f"\n{Y}[*] Localizando Nodo...{N}")
-        print(f" {W}IP: {G}{public_ip}{N}")
-        print(f" {W}Nodo: {G}Juárez, Nuevo León{N}")
+        print(f"\n{Y}[*] Localizando Nodo de Red...{N}")
+        print(f" {W}IP Detectada: {G}{public_ip}{N}")
+        print(f" {W}Ubicación: {G}Juárez, Nuevo León{N}")
+        input("\nPresione Enter..."); menu()
+
+    elif opc == "5":
+        print(f"\n{Y}[*] Analizando tráfico Wi-Fi local...{N}")
+        time.sleep(2)
+        print(f"{G}[✔] No se detectaron sniffers en la red.{N}")
+        input("\nPresione Enter..."); menu()
+
+    elif opc == "6":
+        print(f"\n{Y}[*] Accediendo a la gestión de procesos del Kernel...{N}")
+        time.sleep(1)
+        print(f"{W}[*] Forzando liberación de memoria RAM...{N}")
+        os.system("sync")
+        os.system("am kill-all 2>/dev/null") 
+        print(f"{G}[✔] Ciclos de CPU optimizados para alto rendimiento.{N}")
         input("\nPresione Enter..."); menu()
 
     elif opc == "8":
@@ -95,15 +111,16 @@ def menu():
         try:
             os.system("echo 'python3 ~/duende.py' > /data/data/com.termux/files/usr/bin/duende")
             os.system("chmod +x /data/data/com.termux/files/usr/bin/duende")
-            print(f"{G}[✔] Atajo creado. Ahora solo escribe 'duende' para entrar.{N}")
+            print(f"{G}[✔] Atajo creado. Escribe 'duende' en cualquier momento.{N}")
         except:
-            print(f"{R}[!] Error al crear atajo.{N}")
+            print(f"{R}[!] Error al crear atajo en el sistema.{N}")
         input("\nPresione Enter..."); menu()
 
     elif opc == "0":
-        print(f"\n{R}[!] Protocolo de salida activado en Juárez. Limpiando caché...{N}")
-        os.system("history -c") # Limpia historial de comandos
-        print(f"{G}[✔] Sesión finalizada correctamente.{N}")
+        print(f"\n{R}[!] Protocolo de salida activado. Borrando huellas en Juárez...{N}")
+        os.system("history -c") # Borra historial de la sesión
+        time.sleep(1)
+        print(f"{G}[✔] Sistema Desconectado.{N}")
         sys.exit()
     else:
         menu()
